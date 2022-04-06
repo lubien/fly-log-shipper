@@ -1,9 +1,8 @@
-app = "fly-log-shipper-example"
+image = 'flyio/log-shipper'
 
 [metrics]
   port = 9598
   path = "/metrics"
-
 
 [launcher]
 name = "Log Shipper"
@@ -12,163 +11,134 @@ logo_url = "https://github.com/lubien/mysql-launcher/raw/main/mysql.png"
 post_instructions = "Your new Log Shipper is running!"
 template_description = "Here we have some vector configs and a nats client (`fly-logs`), along side a wrapper script to run it all, that will subscribe to a log stream of your organizations logs, and ship it to various providers."
 
-[[requirements.secrets]]
-  env_name = "ACCESS_TOKEN"
-  label = "Fly.io ACCESS_TOKEN. https://fly.io/user/personal_access_tokens"
+[launcher.requirements.secrets.ACCESS_TOKEN]
+  label = "Fly.io ACCESS_TOKEN"
+  help_url = "https://fly.io/user/personal_access_tokens"
   required = true
 
-[[requirements.secrets]]
-  env_name = "ORG"
+[launcher.requirements.secrets.ORG]
   label = "Organization for environment variable `ORG`"
   type = "organization_slug"
   required = true
 
-[[requirements.secrets]]
-  env_name = "SUBJECT"
-  label = "SUBJECT"
+[launcher.requirements.secrets.SUBJECT]
   default = 'logs.>'
+  help_url = 'https://github.com/superfly/fly-log-shipper#nats'
   required = true
 
-[[requirements.secrets]]
-  env_name = "QUEUE"
-  label = "(Optional) QUEUE"
+[launcher.requirements.secrets.QUEUE]
 
 # AWS
 
-[[requirements.secrets]]
-  env_name = "AWS_ACCESS_KEY_ID"
+[launcher.requirements.secrets.AWS_ACCESS_KEY_ID]
   label = "AWS Access key with access to the log bucket"
   group = "AWS S3"
-[[requirements.secrets]]
-  env_name = "AWS_SECRET_ACCESS_KEY"
+[launcher.requirements.secrets.AWS_SECRET_ACCESS_KEY]
   label = "AWS secret access key"
   group = "AWS S3"
-[[requirements.secrets]]
-  env_name = "AWS_BUCKET"
+[launcher.requirements.secrets.AWS_BUCKET]
   label = "AWS S3 bucket to store logs in"
   group = "AWS S3"
-[[requirements.secrets]]
-  env_name = "AWS_ACCESS_KEY_ID"
+[launcher.requirements.secrets.AWS_REGION]
   label = "Region for the bucket"
   group = "AWS S3"
 
 # Datadog
 
-[[requirements.secrets]]
-  env_name = "DATADOG_API_KEY"
+[launcher.requirements.secrets.DATADOG_API_KEY]
   label = "API key for your Datadog account"
   group = "Datadog"
 
 # Honeycomb
 
-[[requirements.secrets]]
-  env_name = "HONEYCOMB_API_KEY"
+[launcher.requirements.secrets.HONEYCOMB_API_KEY]
   label = "Honeycomb API key"
   group = "Honeycomb"
 
-[[requirements.secrets]]
-  env_name = "HONEYCOMB_DATASET"
+[launcher.requirements.secrets.HONEYCOMB_DATASET]
   label = "Honeycomb dataset"
   group = "Honeycomb"
 
 # Humio
 
-[[requirements.secrets]]
-  env_name = "HUMIO_TOKEN"
+[launcher.requirements.secrets.HUMIO_TOKEN]
   label = "Humio token"
   group = "Humio"
 
 # LogDNA
 
-[[requirements.secrets]]
-  env_name = "LOGDNA_API_KEY"
+[launcher.requirements.secrets.LOGDNA_API_KEY]
   label = "LogDNA API key"
   group = "LogDNA"
 
 # Logflare
 
-[[requirements.secrets]]
-  env_name = "LOGFLARE_API_KEY"
+[launcher.requirements.secrets.LOGFLARE_API_KEY]
   label = "Logflare ingest API key"
   group = "Logflare"
-[[requirements.secrets]]
-  env_name = "LOGFLARE_SOURCE_TOKEN"
+[launcher.requirements.secrets.LOGFLARE_SOURCE_TOKEN]
   label = "Logflare source token (uuid on your Logflare dashboard)"
   group = "Logflare"
 
 # Logtail
 
-[[requirements.secrets]]
-  env_name = "LOGTAIL_TOKEN"
+[launcher.requirements.secrets.LOGTAIL_TOKEN]
   label = "Logtail auth token"
   group = "Logtail"
 
 # Loki
 
-[[requirements.secrets]]
-  env_name = "LOKI_URL"
+[launcher.requirements.secrets.LOKI_URL]
   label = "Loki Endpoint"
   group = "Loki"
-[[requirements.secrets]]
-  env_name = "LOKI_USERNAME"
+[launcher.requirements.secrets.LOKI_USERNAME]
   label = "Loki Username"
   group = "Loki"
-[[requirements.secrets]]
-  env_name = "LOKI_PASSWORD"
+[launcher.requirements.secrets.LOKI_PASSWORD]
   label = "Loki Password"
   group = "Loki"
 
 # New Relic
 
-[[requirements.secrets]]
-  env_name = "NEW_RELIC_INSERT_KEY"
-  label = "(optional) New Relic Insert key"
+[launcher.requirements.secrets.NEW_RELIC_INSERT_KEY]
+  label = "New Relic Insert key"
   group = "New Relic"
-[[requirements.secrets]]
-  env_name = "NEW_RELIC_LICENSE_KEY"
-  label = "(optional) New Relic License key"
+[launcher.requirements.secrets.NEW_RELIC_LICENSE_KEY]
+  label = "New Relic License key"
   group = "New Relic"
 
 # Papertrail
 
-[[requirements.secrets]]
-  env_name = "PAPERTRAIL_ENDPOINT"
+[launcher.requirements.secrets.PAPERTRAIL_ENDPOINT]
   label = "Papertrail endpoint"
   group = "Papertrail"
 
 # Sematext
 
-[[requirements.secrets]]
-  env_name = "SEMATEXT_REGION"
+[launcher.requirements.secrets.SEMATEXT_REGION]
   label = "Sematext region"
   group = "Sematext"
-[[requirements.secrets]]
-  env_name = "SEMATEXT_TOKEN"
+[launcher.requirements.secrets.SEMATEXT_TOKEN]
   label = "Sematext token"
   group = "Sematext"
 
 # Uptrace
 
-[[requirements.secrets]]
-  env_name = "UPTRACE_API_KEY"
+[launcher.requirements.secrets.UPTRACE_API_KEY]
   label = "Uptrace API key"
   group = "Uptrace"
-[[requirements.secrets]]
-  env_name = "UPTRACE_PROJECT"
+[launcher.requirements.secrets.UPTRACE_PROJECT]
   label = "Uptrace project ID"
   group = "Uptrace"
 
 # EraSearch
 
-[[requirements.secrets]]
-  env_name = "ERASEARCH_URL"
+[launcher.requirements.secrets.ERASEARCH_URL]
   label = "EraSearch Endpoint"
   group = "EraSearch"
-[[requirements.secrets]]
-  env_name = "ERASEARCH_AUTH"
+[launcher.requirements.secrets.ERASEARCH_AUTH]
   label = "EraSearch User"
   group = "EraSearch"
-[[requirements.secrets]]
-  env_name = "ERASEARCH_INDEX"
+[launcher.requirements.secrets.ERASEARCH_INDEX]
   label = "EraSearch Index you want to use"
   group = "EraSearch"
